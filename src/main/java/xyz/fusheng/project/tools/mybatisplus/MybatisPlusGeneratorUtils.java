@@ -26,6 +26,7 @@ import static com.baomidou.mybatisplus.generator.config.rules.DbColumnType.*;
  * @Date: 2022/3/26 14:48
  * @Version: 1.0
  * @Description:
+ * 参考文档 : https://baomidou.com/pages/981406/
  */
 
 public class MybatisPlusGeneratorUtils {
@@ -63,6 +64,7 @@ public class MybatisPlusGeneratorUtils {
         FastAutoGenerator.create(dataSourceConfig)
                 .globalConfig(builder -> builder
                         //.fileOverride()
+                        .disableOpenDir()
                         .outputDir(DIR_PATH + "/src/main/java")
                         .author("code-fusheng")
                         .enableSwagger()
@@ -75,7 +77,8 @@ public class MybatisPlusGeneratorUtils {
                         .entity("model.entity")
                         .service("core.service")
                         .serviceImpl("core.service.impl")
-                        .mapper("mapper")
+                        .mapper("core.mapper")
+                        .xml("core.mapper.xml")
                         .build())
                 .strategyConfig(builder -> builder
                         .addInclude("sys_user", "sys_role", "sys_menu").addTablePrefix("sys_")

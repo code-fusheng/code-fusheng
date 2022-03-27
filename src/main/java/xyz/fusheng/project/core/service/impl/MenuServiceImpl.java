@@ -1,9 +1,9 @@
 package xyz.fusheng.project.core.service.impl;
 
-import xyz.fusheng.project.model.entity.Menu;
-import xyz.fusheng.project.mapper.MenuMapper;
-import xyz.fusheng.project.core.service.IMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import xyz.fusheng.project.core.mapper.MenuMapper;
+import xyz.fusheng.project.model.entity.Menu;
+import xyz.fusheng.project.core.service.IMenuService;
 import org.springframework.stereotype.Service;
 
 /**
