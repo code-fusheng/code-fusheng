@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`
 (
-    `id`           bigint       NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+    `user_id`           bigint       NOT NULL AUTO_INCREMENT COMMENT '主键Id',
     `uuid`         varchar(200) NOT NULL COMMENT '全局唯一用户ID',
     `username`     varchar(50)  NOT NULL COMMENT '用户名',
     `password`     varchar(200) NOT NULL COMMENT '密码',
@@ -27,7 +27,7 @@ CREATE TABLE `sys_user`
     `updater_name` varchar(100)   DEFAULT NULL COMMENT '修改者姓名',
     `created_time` datetime       DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updated_time` datetime       DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-    PRIMARY KEY (`id`) USING BTREE,
+    PRIMARY KEY (`user_id`) USING BTREE,
     UNIQUE KEY `uniq_uuid` (`uuid`) USING BTREE,
     UNIQUE KEY `uniq_username` (`username`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='系统表-用户表';
@@ -35,7 +35,7 @@ CREATE TABLE `sys_user`
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`
 (
-    `id`           bigint      NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+    `role_id`           bigint      NOT NULL AUTO_INCREMENT COMMENT '主键Id',
     `role_name`    varchar(50) NOT NULL COMMENT '角色名称',
     `state`        tinyint(1) DEFAULT NULL COMMENT '状态',
     `remark`       varchar(255) DEFAULT NULL COMMENT '备注',
@@ -49,13 +49,13 @@ CREATE TABLE `sys_role`
     `updater_name` varchar(100) DEFAULT NULL COMMENT '修改者姓名',
     `created_time` datetime     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updated_time` datetime     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-    PRIMARY KEY (`id`) USING BTREE
+    PRIMARY KEY (`role_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='系统表-角色表';
 
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`
 (
-    `id`           bigint      NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+    `menu_id`           bigint      NOT NULL AUTO_INCREMENT COMMENT '主键Id',
     `name`         varchar(50) NOT NULL COMMENT '权限名称',
     `permission`   varchar(200)         DEFAULT NULL COMMENT '权限标识',
     `path`         varchar(200)         DEFAULT NULL COMMENT '权限路由',
@@ -73,7 +73,7 @@ CREATE TABLE `sys_menu`
     `updater_name` varchar(100)         DEFAULT NULL COMMENT '修改者姓名',
     `created_time` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`  datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    PRIMARY KEY (`id`) USING BTREE
+    PRIMARY KEY (`menu_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 DROP TABLE IF EXISTS `sys_user_role`;

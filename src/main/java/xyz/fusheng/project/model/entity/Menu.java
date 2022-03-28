@@ -33,7 +33,7 @@ public class Menu extends BaseEntity {
 
     @ApiModelProperty("主键Id")
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Long menuId;
 
     @ApiModelProperty("权限名称")
     private String name;
@@ -93,7 +93,7 @@ public class Menu extends BaseEntity {
     private Date updateTime;
 
 
-    public static final String ID = "id";
+    public static final String MENU_ID = "menuId";
 
     public static final String NAME = "name";
 

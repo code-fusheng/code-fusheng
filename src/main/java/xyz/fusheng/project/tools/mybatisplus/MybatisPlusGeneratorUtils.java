@@ -40,18 +40,15 @@ public class MybatisPlusGeneratorUtils {
     public static void main(String[] args) {
 
         DataSourceConfig.Builder dataSourceConfig = new DataSourceConfig.Builder(DB_URL, USERNAME, PASSWORD)
-                .typeConvert(new ITypeConvert() {
-                    @Override
-                    public IColumnType processTypeConvert(GlobalConfig globalConfig, String fieldType) {
-                        String type = fieldType.toLowerCase();
-                        if (type.contains("tinyint") || type.contains("tinyint(1)") || type.contains("tinyint(2)") || type.contains("tinyint(4)")) {
-                            return INTEGER;
-                        }
-                        if (type.contains("bit")) {
-                            return INTEGER;
-                        }
-                        return new MySqlTypeConvert().processTypeConvert(globalConfig, fieldType);
+                .typeConvert((globalConfig, fieldType) -> {
+                    String type = fieldType.toLowerCase();
+                    if (type.contains("tinyint") || type.contains("tinyint(1)") || type.contains("tinyint(2)") || type.contains("tinyint(4)")) {
+                        return INTEGER;
                     }
+                    if (type.contains("bit")) {
+                        return INTEGER;
+                    }
+                    return new MySqlTypeConvert().processTypeConvert(globalConfig, fieldType);
                 })
                 .keyWordsHandler(new MySqlKeyWordsHandler());
 

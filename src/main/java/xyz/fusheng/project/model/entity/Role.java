@@ -32,8 +32,8 @@ public class Role extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("主键Id")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "role_id", type = IdType.AUTO)
+    private Long roleId;
 
     @ApiModelProperty("角色名称")
     private String roleName;
@@ -81,7 +81,7 @@ public class Role extends BaseEntity {
     private Date updatedTime;
 
 
-    public static final String ID = "id";
+    public static final String ROLE_ID = "role_id";
 
     public static final String ROLE_NAME = "role_name";
 

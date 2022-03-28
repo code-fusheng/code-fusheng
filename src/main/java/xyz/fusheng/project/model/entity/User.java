@@ -33,8 +33,8 @@ public class User extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("主键Id")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "userId", type = IdType.AUTO)
+    private Long userId;
 
     @ApiModelProperty("全局唯一用户ID")
     private String uuid;
@@ -118,7 +118,7 @@ public class User extends BaseEntity {
     private Date updatedTime;
 
 
-    public static final String ID = "id";
+    public static final String USER_ID = "user_id";
 
     public static final String UUID = "uuid";
 
