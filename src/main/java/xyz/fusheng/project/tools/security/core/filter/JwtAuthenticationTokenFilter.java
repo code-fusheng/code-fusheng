@@ -51,7 +51,7 @@ public class JwtAuthenticationTokenFilter extends BasicAuthenticationFilter {
                 // 获取用户名
                 String username = claims.getSubject();
                 String userId = claims.getId();
-                if(!StringUtils.isEmpty(username)&&!StringUtils.isEmpty(userId)) {
+                if(!StringUtils.isEmpty(username) && !StringUtils.isEmpty(userId)) {
                     //组装参数
                     CustomUser customUser = new CustomUser();
                     customUser.setUsername(claims.getSubject());

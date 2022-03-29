@@ -36,7 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public CustomUser loadUserByUsername(String username) throws UsernameNotFoundException {
         // 查询用户信息
         User user = iUserService.selectUserByUsername(username);
-        if (!CommonUtils.objAndAtrIsNull(user)) {
+        if (CommonUtils.objAndAtrIsNull(user)) {
             return null;
         }
         // 组装参数
@@ -53,7 +53,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public CustomUser loadUserByMobile(String mobile) {
         // 查询用户信息
         User user = iUserService.selectUserByMobile(mobile);
-        if (!CommonUtils.objAndAtrIsNull(user)) {
+        if (CommonUtils.objAndAtrIsNull(user)) {
             return null;
         }
         // 组装参数
