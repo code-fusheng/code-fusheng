@@ -3,10 +3,7 @@ package xyz.fusheng.project.tools.security.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
-import xyz.fusheng.project.tools.security.core.service.CustomUserDetailsService;
 import xyz.fusheng.project.tools.security.entity.CustomUser;
-
-import javax.annotation.Resource;
 
 /**
  * @FileName: SecurityUtil
@@ -16,11 +13,11 @@ import javax.annotation.Resource;
  * @Description:
  */
 
-public class SecurityUtil {
+public class SecurityUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(SecurityUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(SecurityUtils.class);
 
-    private SecurityUtil() {
+    private SecurityUtils() {
     }
 
     public static CustomUser getUserInfo() {

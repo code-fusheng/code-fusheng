@@ -2,11 +2,11 @@ package xyz.fusheng.project.tools.security.utils;
 
 import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.fusheng.project.tools.security.config.JwtConfig;
 import xyz.fusheng.project.tools.security.entity.CustomUser;
-import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
 
@@ -18,14 +18,15 @@ import java.util.Date;
  * @Description:
  */
 
-public class JwtTokenUtil {
+public class JwtTokenUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtils.class);
 
     /**
      * 私有化构造器
      */
-    private JwtTokenUtil() {}
+    private JwtTokenUtils() {
+    }
 
     /**
      * 生成 Token

@@ -5,12 +5,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import xyz.fusheng.project.common.enums.ResultEnum;
 import xyz.fusheng.project.common.utils.CommonUtils;
 import xyz.fusheng.project.model.base.BaseResult;
 import xyz.fusheng.project.tools.security.config.JwtConfig;
 import xyz.fusheng.project.tools.security.entity.CustomUser;
-import xyz.fusheng.project.tools.security.utils.JwtTokenUtil;
+import xyz.fusheng.project.tools.security.utils.JwtTokenUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +34,7 @@ public class CustomUserLoginSuccessHandler implements AuthenticationSuccessHandl
         if (!CommonUtils.objAndAtrIsNull(customUser)) {
             BeanUtils.copyProperties(authentication.getPrincipal(), customUser);
         }
-        String token = JwtConfig.tokenPrefix + JwtTokenUtil.createAccessToken(customUser);
+        String token = JwtConfig.tokenPrefix + JwtTokenUtils.createAccessToken(customUser);
         // 封装返回参数
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(JSON.toJSONString(new BaseResult<>("登录成功!", token)));
