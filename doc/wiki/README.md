@@ -8,4 +8,5 @@ fix : 文件忽略 --- 处理本地以及远程 .DS_Store(Mac文件图标) 文�
 feature : 精度处理 --- 新增 Jackson 序列化类型转换处理前端 long 类型精度问题
 feature : 认证授权 --- 新增 Spring Security 认证授权体系逻辑
 feature : 认证授权 --- 新增用户名密码登录login接口以及用户信息info接口
+feature : 线程变量 --- 新增本地线程变量 ThreadLocalContext 持有者类
 ```
