@@ -80,7 +80,7 @@ public class RequestAspect {
      * 发生异常
      */
     @AfterThrowing(pointcut = "basePointCut()", throwing = "e")
-    public void saveExceptionLog(JoinPoint joinPoint, Throwable e) {
+    public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
         logger.info("[AOP切面日志-异常通知]");
     }
 
