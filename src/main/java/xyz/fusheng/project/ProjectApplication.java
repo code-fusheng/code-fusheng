@@ -33,8 +33,12 @@
 package xyz.fusheng.project;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.context.WebServerInitializedEvent;
+import org.springframework.context.event.EventListener;
 
 /**
  * @author code-fusheng
@@ -43,8 +47,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("xyz.fusheng.project.core.mapper")
 public class ProjectApplication {
 
+    private static final Logger logger = LoggerFactory.getLogger(ProjectApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(ProjectApplication.class, args);
+    }
+
+    //@Bean
+    //public ApplicationRunner runner(WebServerApplicationContext context) {
+    //    return args -> {
+    //        logger.info("当前 WebServer 实现类: " + context.getWebServer().getClass().getName());
+    //    };
+    //}
+
+    @EventListener(WebServerInitializedEvent.class)
+    public void onWebServerReady(WebServerInitializedEvent event) {
+        logger.info("当前 WebServer 实现类: " + event.getWebServer().getClass().getName());
     }
 
 }

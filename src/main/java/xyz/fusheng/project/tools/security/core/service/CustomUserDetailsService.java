@@ -1,7 +1,6 @@
 package xyz.fusheng.project.tools.security.core.service;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;

@@ -7,7 +7,7 @@ target/
 **/target/*.*
 /logs/
 
-### STS ###
+### STS (Spring Tool Suite) ###
 .apt_generated
 .classpath
 .factorypath

@@ -1,10 +1,10 @@
 package xyz.fusheng.project.core.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import xyz.fusheng.project.model.entity.Menu;
 import xyz.fusheng.project.model.entity.Role;
 import xyz.fusheng.project.model.entity.User;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 

@@ -1,14 +1,14 @@
 package xyz.fusheng.project.tools.security.entity;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Objects;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import xyz.fusheng.project.common.constants.GlobalConstants;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Objects;
 
 /**
  * @FileName: SelfUser

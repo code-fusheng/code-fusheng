@@ -11,3 +11,6 @@ spring:
     password: Xcode-mysql?
     # 可以不配置，根据url自动识别，建议配置
     driver-class-name: com.mysql.cj.jdbc.Driver
+  elasticsearch:
+    rest:
+      uris: 42.192.222.62:9200

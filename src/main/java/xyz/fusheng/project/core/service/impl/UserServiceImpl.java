@@ -2,13 +2,13 @@ package xyz.fusheng.project.core.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 import xyz.fusheng.project.common.constants.GlobalConstants;
 import xyz.fusheng.project.core.mapper.UserMapper;
+import xyz.fusheng.project.core.service.IUserService;
 import xyz.fusheng.project.model.entity.Menu;
 import xyz.fusheng.project.model.entity.Role;
 import xyz.fusheng.project.model.entity.User;
-import xyz.fusheng.project.core.service.IUserService;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;

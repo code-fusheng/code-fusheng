@@ -1,8 +1,8 @@
 package xyz.fusheng.project.core.mapper;
 
-import xyz.fusheng.project.model.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import xyz.fusheng.project.model.entity.Role;
 
 /**
  * <p>

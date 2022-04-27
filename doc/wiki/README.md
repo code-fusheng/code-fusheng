@@ -1,6 +1,9 @@
 ## SpringBoot 工程脚手架 开发指南
 
-### 开发日志
+
+
+### 一、开发日志
+
 ```
 init : 工程建设 --- 规范化 SpringBoot 工程单体项目骨架
 feature : 代码生成 --- 新增 MybatisPlus 代码生成工具配置
@@ -11,3 +14,34 @@ feature : 认证授权 --- 新增用户名密码登录login接口以及用户信
 feature : 线程变量 --- 新增本地线程变量 ThreadLocalContext 持有者类
 feature : 切面模版 --- 新增切面配置参考模版
 ```
+
+
+
+### 二、工程文档
+
+#### 2.1 版本依赖说明
+
+[Spring Could Alibaba](https://github.com/alibaba/spring-cloud-alibaba/wiki)
+
+[Spring Boot](https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E)
+
+#### 2.2 Actuator 端点说明
+
+Spring Boot Actuator 默认开启 health 和 info，其他的需要通过
+http://localhost:8080/actuator/{endpoints}
+
+* health：显示应用的健康信息
+* Info：显示任意的应用信息
+* beans：显示 Spring 应用上下文的 Spring Bean 完整列表
+* env：暴露 Spring Environment 属性
+* conditions：显示所有配置类和自动装配类的条件评估结果
+
+#### 2.3 Annotion 注解说明
+
+> @Autowired 和 @Qualifier
+
+@Qualifier "逻辑类型"限定
+
+> @PostConstruct  和 @PreDestroy 
+
+JSR-250 生命周期回调注解
