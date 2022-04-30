@@ -30,6 +30,8 @@
         <jjwt.version>0.9.0</jjwt.version>
         <!-- 自定义es版本依赖，保证和本地一致 -->
         <elasticsearch.version>7.6.1</elasticsearch.version>
+        <apache-poi.version>5.2.2</apache-poi.version>
+        <apache-pdfbox.version>2.0.26</apache-pdfbox.version>
 
     </properties>
 
@@ -109,10 +111,17 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- commons 工具模块 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons-text.version}</version>
         </dependency>
 
         <!-- mysql -->
@@ -196,10 +205,33 @@
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
 
+        <!-- Java程序对Microsoft Office格式文件读和写 -->
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-text</artifactId>
-            <version>${commons-text.version}</version>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${apache-poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${apache-poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>${apache-poi.version}</version>
+        </dependency>
+
+        <!-- Apache PDFBox https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>${apache-pdfbox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox-tools</artifactId>
+            <version>${apache-pdfbox.version}</version>
         </dependency>
 
     </dependencies>

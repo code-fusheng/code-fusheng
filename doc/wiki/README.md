@@ -36,12 +36,24 @@ http://localhost:8080/actuator/{endpoints}
 * env：暴露 Spring Environment 属性
 * conditions：显示所有配置类和自动装配类的条件评估结果
 
-#### 2.3 Annotion 注解说明
+#### 2.3 Annotation 注解说明
 
 > @Autowired 和 @Qualifier
 
 @Qualifier "逻辑类型"限定
 
-> @PostConstruct  和 @PreDestroy 
+> @PostConstruct  和 @PreDestroy
 
 JSR-250 生命周期回调注解
+
+> @AliasFor
+
+能用于注解内属性方法的别名
+
+> @RestControllerAdvice  & @ControllerAdvice
+
+AOP 拦截通知
+
+> @Profile & @Conditional
+
+配置化条件装配 & 编程式条件装配
