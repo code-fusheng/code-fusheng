@@ -7,13 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import xyz.fusheng.project.common.holder.ThreadLocalContext;
+import xyz.fusheng.project.common.utils.ThreadPoolUtils;
 import xyz.fusheng.project.model.base.BaseResult;
 
+import javax.annotation.Resource;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.LongAdder;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -36,6 +35,9 @@ public class ComTestController {
 
     @Value("${server.port:8080}")
     private String port;
+
+    @Resource
+    private ExecutorService customThreadPool;
 
     @ApiOperation("测试服务端口")
     @PostMapping("/testPort")
@@ -158,6 +160,27 @@ public class ComTestController {
         forkJoinPool.shutdown();
         forkJoinPool.awaitTermination(1, TimeUnit.HOURS);
         return BaseResult.success(maps);
+    }
+
+    @ApiOperation("测试CustomThreadLocal问题")
+    @GetMapping("/testCustomThreadLocal")
+    public BaseResult<Object> testCustomThreadLocal() throws InterruptedException {
+        for (int i = 0; i < 1000; i++) {
+            ThreadPoolUtils.printStats(customThreadPool);
+            customThreadPool.execute(() -> {
+                String payload = IntStream.rangeClosed(1, 1000)
+                        .mapToObj(__ -> "a")
+                        .collect(Collectors.joining("")) + UUID.randomUUID().toString();
+                logger.info("ThreadPool:{}, Payload:{}", Thread.currentThread().getId(), payload);
+                try {
+                    TimeUnit.SECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                }
+            });
+        }
+        customThreadPool.shutdown();
+        customThreadPool.awaitTermination(1, TimeUnit.HOURS);
+        return BaseResult.success(null);
     }
 
 
