@@ -1,11 +1,8 @@
 package xyz.fusheng.project.common.utils;
 
-import com.mysql.cj.log.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 
 /**

@@ -1,7 +1,7 @@
 package xyz.fusheng.project.core.service;
 
-import xyz.fusheng.project.model.entity.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import xyz.fusheng.project.model.entity.Menu;
 
 /**
  * <p>

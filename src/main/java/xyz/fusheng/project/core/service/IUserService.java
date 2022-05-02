@@ -1,9 +1,9 @@
 package xyz.fusheng.project.core.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import xyz.fusheng.project.model.entity.Menu;
 import xyz.fusheng.project.model.entity.Role;
 import xyz.fusheng.project.model.entity.User;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 
