@@ -1,4 +1,6 @@
-
+server:
+  tomcat:
+    max-threads: 1
 #以下为JWT的配置
 jwt:
   # 密匙KEY

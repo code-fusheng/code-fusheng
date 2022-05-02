@@ -53,13 +53,6 @@ public class ProjectApplication {
         SpringApplication.run(ProjectApplication.class, args);
     }
 
-    //@Bean
-    //public ApplicationRunner runner(WebServerApplicationContext context) {
-    //    return args -> {
-    //        logger.info("当前 WebServer 实现类: " + context.getWebServer().getClass().getName());
-    //    };
-    //}
-
     @EventListener(WebServerInitializedEvent.class)
     public void onWebServerReady(WebServerInitializedEvent event) {
         logger.info("当前 WebServer 实现类: " + event.getWebServer().getClass().getName());

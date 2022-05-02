@@ -53,20 +53,20 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <!-- 排除 tomcat 依赖 -->
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
+            <!--<exclusions>-->
+            <!--    &lt;!&ndash; 排除 tomcat 依赖 &ndash;&gt;-->
+            <!--    <exclusion>-->
+            <!--        <groupId>org.springframework.boot</groupId>-->
+            <!--        <artifactId>spring-boot-starter-tomcat</artifactId>-->
+            <!--    </exclusion>-->
+            <!--</exclusions>-->
         </dependency>
 
         <!-- Jetty Servlet Web 容器 : 使用 Jetty 需要移除原有 Tomcat -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.springframework.boot</groupId>-->
+        <!--    <artifactId>spring-boot-starter-jetty</artifactId>-->
+        <!--</dependency>-->
 
         <!-- Undertow 容器 -->
         <!--<dependency>-->
@@ -74,10 +74,10 @@
         <!--    <artifactId>spring-boot-starter-undertow</artifactId>-->
         <!--</dependency>-->
         <!-- WebFlux 依赖 : 使用 WebFlux 需要移除原有 Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.springframework.boot</groupId>-->
+        <!--    <artifactId>spring-boot-starter-webflux</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
