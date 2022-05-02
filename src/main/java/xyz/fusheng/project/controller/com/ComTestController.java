@@ -40,7 +40,7 @@ public class ComTestController {
     private ExecutorService customThreadPool;
 
     @ApiOperation("测试服务端口")
-    @PostMapping("/testPort")
+    @GetMapping("/testPort")
     public BaseResult<Object> testPort() {
         return BaseResult.success(port);
     }

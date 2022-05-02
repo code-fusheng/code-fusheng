@@ -247,6 +247,12 @@
             </activation>
         </profile>
         <profile>
+            <id>learn</id>
+            <properties>
+                <profiles.active>learn</profiles.active>
+            </properties>
+        </profile>
+        <profile>
             <id>test</id>
             <properties>
                 <profiles.active>test</profiles.active>
