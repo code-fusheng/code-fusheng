@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>xyz.fusheng</groupId>
-    <artifactId>springboot-project-cli</artifactId>
+    <artifactId>code-fusheng</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>[code-fusheng : springboot-project-cli]</name>
-    <description>Spring Boot 脚手架工程</description>
+    <name>code-fusheng</name>
+    <description>code-fusheng</description>
     <properties>
         <java.version>1.8</java.version>
 
@@ -245,12 +245,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-        </profile>
-        <profile>
-            <id>learn</id>
-            <properties>
-                <profiles.active>learn</profiles.active>
-            </properties>
         </profile>
         <profile>
             <id>test</id>
