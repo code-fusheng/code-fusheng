@@ -154,7 +154,7 @@ public class ComTestController {
         ForkJoinPool forkJoinPool = new ForkJoinPool(10);
         forkJoinPool.execute(() -> IntStream.rangeClosed(1, 10000000).parallel().forEach(i -> {
             String key = "item" + ThreadLocalRandom.current().nextInt(10);
-            // 利用 computeIfAbsent 方法实力话 LongAdder，利用此进行线程安全记数
+            // 利用 computeIfAbsent 方法实例化 LongAdder，利用此进行线程安全记数
             maps.computeIfAbsent(key, k -> new LongAdder()).increment();
         }));
         forkJoinPool.shutdown();
@@ -182,6 +182,5 @@ public class ComTestController {
         customThreadPool.awaitTermination(1, TimeUnit.HOURS);
         return BaseResult.success(null);
     }
-
 
 }

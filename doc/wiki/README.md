@@ -17,6 +17,7 @@ feature : 错误案例 --- 新增错误案例以及正常处理 Demo 分支 mast
 feature : 错误案例 --- 新增 ThreadLocal 使用案例以及说明
 feature : 错误案例 --- 新增 ConcurrentHashMap 使用案例以及说明
 feature : 错误案例 --- 新增 ThreadPool 使用案例以及说明
+feature : 错误案例 --- 新增 Hikari JMX MBean 连接池信息注册以及存活时间配置; 配合 Jconsole 以及 mrk 进行压测监控;
 ```
 
 

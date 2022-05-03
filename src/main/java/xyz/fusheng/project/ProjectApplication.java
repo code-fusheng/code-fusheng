@@ -18,6 +18,7 @@
  * 2. spring-boot-starter-data-jpa 依赖，默认注入 JpaTransactionManager 实例
  * 3、@Import: 导入第三方资源（普通的java类） 以 Bean 的形式注入到 Spring 容器
  *
+ *
  * 三、[@MapperScan] : mapper 包扫描 注解原理 --> @MapperScan 是根据其注解上的 @Import({MapperScannerRegistrar.class}) 进行自定配置的
  * 注解思路: 首先根据标注的 @MapperScan 获取 basePackage 或者 @Mapper 或者所在的 package,之后通过 ClassPathMapperScanner 去扫描包，
  *          获取所有 Mapper 接口类的 BeanDefinition，之后具体配置，设置 beanClass 为 MapperFactoryBean,设置 MapperFactoryBean 的构造器
@@ -39,12 +40,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author code-fusheng
  */
 @SpringBootApplication
 @MapperScan("xyz.fusheng.project.core.mapper")
+@EnableTransactionManagement
 public class ProjectApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(ProjectApplication.class);
