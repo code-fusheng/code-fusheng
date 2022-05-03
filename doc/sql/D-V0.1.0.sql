@@ -1,0 +1,3 @@
+-- 20220503 初始化用户信息
+INSERT INTO `code-fusheng`.`sys_user` (`user_id`, `uuid`, `username`, `password`, `avatar`, `mobile`, `mail`, `signature`, `description`, `realname`, `sex`, `address`, `lng`, `lat`, `state`, `remark`, `memo`, `version`, `is_enabled`, `is_deleted`, `creator_id`, `updater_id`, `creator_name`, `updater_name`, `created_time`, `updated_time`)
+VALUES (1, '1', 'code-fusheng', '$2a$10$pwUFaYUOBy61xI/iBN5HM.AEwnqWKwOJvV3RfuCoGhzHCmqo6cC16', 'https://aliyun-oss-model.oss-cn-beijing.aliyuncs.com/38C1EE7B-FA6B-44B2-ACE5-74BDDEEC24D9.jpeg', '15115726712', '2561035977@qq.com', '浮生若梦', '系统最终所有者', '张浩', 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 0, '1', '1', 'code-fusheng', 'code-fusheng', '2022-03-29 14:10:39', '2022-04-17 13:29:43');
