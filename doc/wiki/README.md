@@ -13,7 +13,7 @@ feature : 认证授权 --- 新增 Spring Security 认证授权体系逻辑
 feature : 认证授权 --- 新增用户名密码登录login接口以及用户信息info接口
 feature : 线程变量 --- 新增本地线程变量 ThreadLocalContext 持有者类
 feature : 切面模版 --- 新增切面配置参考模版
-feature : 错误案例 --- 新增错误案例以及正常处理 Demo 分支 master-error
+feature : 错误案例 --- 新增错误案例以及正常处理 Demo 分支 master-case
 feature : 错误案例 --- 新增 ThreadLocal 使用案例以及说明
 feature : 错误案例 --- 新增 ConcurrentHashMap 使用案例以及说明
 feature : 错误案例 --- 新增 ThreadPool 使用案例以及说明
