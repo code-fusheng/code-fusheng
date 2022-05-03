@@ -18,6 +18,15 @@
  * 2. spring-boot-starter-data-jpa 依赖，默认注入 JpaTransactionManager 实例
  * 3、@Import: 导入第三方资源（普通的java类） 以 Bean 的形式注入到 Spring 容器
  *
+ * 事务生效原则:
+ * 1. 除非特殊配置，否则只能在 public 方法上加 @Transactional 注解；
+ * PS: Spring 默认通过动态代理的方式实现 AOP，对目标方法进行增强，private 修饰的方法无法被代理到。
+ * 2. 必须通过代理过的类，从外部调用目标方法才能生效。
+ * 3. 只有异常传播出了标记 @Transactional 注解的方法，事务才能回滚。
+ * 4. 默认情况下 @Transactional 只处理 RuntimeException(非受检异常)或 Error，可以通过 rollbackFor 和 noRollbackFor 属性覆盖默认配置
+ * PS: DefaultTransactionAttribute public boolean rollbackOn(Throwable ex) { return ex instanceof RuntimeException || ex instanceof Error; }
+ * 5. 如果方法涉及多次数据库操作，并且希望作为单独的事务处理，可以通过 Propagation 属性做事务传播隔离
+ *
  *
  * 三、[@MapperScan] : mapper 包扫描 注解原理 --> @MapperScan 是根据其注解上的 @Import({MapperScannerRegistrar.class}) 进行自定配置的
  * 注解思路: 首先根据标注的 @MapperScan 获取 basePackage 或者 @Mapper 或者所在的 package,之后通过 ClassPathMapperScanner 去扫描包，

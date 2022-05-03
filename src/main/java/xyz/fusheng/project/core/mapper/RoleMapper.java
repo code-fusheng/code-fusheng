@@ -2,7 +2,7 @@ package xyz.fusheng.project.core.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import xyz.fusheng.project.model.entity.Role;
+import xyz.fusheng.project.model.po.SysRole;
 
 /**
  * <p>
@@ -13,6 +13,6 @@ import xyz.fusheng.project.model.entity.Role;
  * @since 2022-03-27
  */
 @Mapper
-public interface RoleMapper extends BaseMapper<Role> {
+public interface RoleMapper extends BaseMapper<SysRole> {
 
 }

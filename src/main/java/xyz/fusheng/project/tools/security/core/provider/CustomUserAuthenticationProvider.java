@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import xyz.fusheng.project.common.exception.BusinessException;
 import xyz.fusheng.project.common.utils.CommonUtils;
 import xyz.fusheng.project.core.service.IUserService;
-import xyz.fusheng.project.model.entity.Role;
+import xyz.fusheng.project.model.po.SysRole;
 import xyz.fusheng.project.tools.security.core.service.CustomUserDetailsService;
 import xyz.fusheng.project.tools.security.entity.CustomUser;
 
@@ -56,9 +56,9 @@ public class CustomUserAuthenticationProvider implements AuthenticationProvider 
         // 角色集合
         Set<GrantedAuthority> authorities = new HashSet<>();
         // 查询用户角色
-        List<Role> roleList = iUserService.selectRoleByUserId(customUser.getUserId());
-        for (Role role: roleList){
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
+        List<SysRole> sysRoleList = iUserService.selectRoleByUserId(customUser.getUserId());
+        for (SysRole sysRole : sysRoleList){
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + sysRole.getRoleName()));
         }
         customUser.setAuthorities(authorities);
         // 进行登录

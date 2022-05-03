@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import xyz.fusheng.project.core.mapper.MenuMapper;
 import xyz.fusheng.project.core.service.IMenuService;
-import xyz.fusheng.project.model.entity.Menu;
+import xyz.fusheng.project.model.po.SysMenu;
 
 /**
  * <p>
@@ -15,6 +15,6 @@ import xyz.fusheng.project.model.entity.Menu;
  * @since 2022-03-27
  */
 @Service
-public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
+public class MenuServiceImpl extends ServiceImpl<MenuMapper, SysMenu> implements IMenuService {
 
 }

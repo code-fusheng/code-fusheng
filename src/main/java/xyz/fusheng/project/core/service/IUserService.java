@@ -1,9 +1,9 @@
 package xyz.fusheng.project.core.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import xyz.fusheng.project.model.entity.Menu;
-import xyz.fusheng.project.model.entity.Role;
-import xyz.fusheng.project.model.entity.User;
+import xyz.fusheng.project.model.po.SysMenu;
+import xyz.fusheng.project.model.po.SysRole;
+import xyz.fusheng.project.model.po.SysUser;
 
 import java.util.List;
 
@@ -15,33 +15,33 @@ import java.util.List;
  * @author code-fusheng
  * @since 2022-03-27
  */
-public interface IUserService extends IService<User> {
+public interface IUserService extends IService<SysUser> {
 
     /**
      * 查询用户信息根据 username 用户名
      * @param username
      * @return
      */
-    User selectUserByUsername(String username);
+    SysUser selectUserByUsername(String username);
 
     /**
      * 查询用户信息根据 mobile 手机号
      * @param mobile
      * @return
      */
-    User selectUserByMobile(String mobile);
+    SysUser selectUserByMobile(String mobile);
 
     /**
      * 根据用户id查询用户角色集合
      * @param userId
      * @return
      */
-    List<Role> selectRoleByUserId(Long userId);
+    List<SysRole> selectRoleByUserId(Long userId);
 
     /**
      * 根据用户id查询权限集合
      * @param userId
      * @return
      */
-    List<Menu> selectMenuByUserId(Long userId);
+    List<SysMenu> selectMenuByUserId(Long userId);
 }

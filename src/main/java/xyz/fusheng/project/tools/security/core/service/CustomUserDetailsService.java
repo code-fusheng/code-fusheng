@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import xyz.fusheng.project.common.utils.CommonUtils;
 import xyz.fusheng.project.core.service.IUserService;
-import xyz.fusheng.project.model.entity.User;
+import xyz.fusheng.project.model.po.SysUser;
 import xyz.fusheng.project.tools.security.entity.CustomUser;
 
 import javax.annotation.Resource;
@@ -34,13 +34,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public CustomUser loadUserByUsername(String username) throws UsernameNotFoundException {
         // 查询用户信息
-        User user = iUserService.selectUserByUsername(username);
-        if (CommonUtils.objAndAtrIsNull(user)) {
+        SysUser sysUser = iUserService.selectUserByUsername(username);
+        if (CommonUtils.objAndAtrIsNull(sysUser)) {
             return null;
         }
         // 组装参数
         CustomUser customUser = new CustomUser();
-        BeanUtils.copyProperties(user, customUser);
+        BeanUtils.copyProperties(sysUser, customUser);
         return customUser;
     }
 
@@ -51,13 +51,13 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     public CustomUser loadUserByMobile(String mobile) {
         // 查询用户信息
-        User user = iUserService.selectUserByMobile(mobile);
-        if (CommonUtils.objAndAtrIsNull(user)) {
+        SysUser sysUser = iUserService.selectUserByMobile(mobile);
+        if (CommonUtils.objAndAtrIsNull(sysUser)) {
             return null;
         }
         // 组装参数
         CustomUser customUser = new CustomUser();
-        BeanUtils.copyProperties(user, customUser);
+        BeanUtils.copyProperties(sysUser, customUser);
         return customUser;
     }
 

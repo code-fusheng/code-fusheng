@@ -4,7 +4,7 @@ import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import xyz.fusheng.project.core.service.IUserService;
-import xyz.fusheng.project.model.entity.Menu;
+import xyz.fusheng.project.model.po.SysMenu;
 import xyz.fusheng.project.tools.security.entity.CustomUser;
 
 import javax.annotation.Resource;
@@ -33,9 +33,9 @@ public class CustomUserPermissionEvaluator implements PermissionEvaluator {
         CustomUser customUser = (CustomUser) authentication.getPrincipal();
         // 查询用户权限（这里可以将权限放入缓存提高效率）
         Set<String> permissions = new HashSet<>();
-        List<Menu> menuList = iUserService.selectMenuByUserId(customUser.getUserId());
-        for (Menu menu : menuList) {
-            permissions.add(menu.getPermission());
+        List<SysMenu> sysMenuList = iUserService.selectMenuByUserId(customUser.getUserId());
+        for (SysMenu sysMenu : sysMenuList) {
+            permissions.add(sysMenu.getPermission());
         }
         // 权限对比
         if (permissions.contains(permission.toString())){

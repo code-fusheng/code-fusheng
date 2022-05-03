@@ -2,9 +2,9 @@ package xyz.fusheng.project.core.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import xyz.fusheng.project.model.entity.Menu;
-import xyz.fusheng.project.model.entity.Role;
-import xyz.fusheng.project.model.entity.User;
+import xyz.fusheng.project.model.po.SysMenu;
+import xyz.fusheng.project.model.po.SysRole;
+import xyz.fusheng.project.model.po.SysUser;
 
 import java.util.List;
 
@@ -17,19 +17,19 @@ import java.util.List;
  * @since 2022-03-27
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<SysUser> {
 
     /**
      * 根据用户id查询用户角色集合
      * @param id
      * @return
      */
-    List<Role> selectRoleByUserId(Long id);
+    List<SysRole> selectRoleByUserId(Long id);
 
     /**
      * 根据用户id查询权限集合
      * @param id
      * @return
      */
-    List<Menu> selectMenuByUserId(Long id);
+    List<SysMenu> selectMenuByUserId(Long id);
 }

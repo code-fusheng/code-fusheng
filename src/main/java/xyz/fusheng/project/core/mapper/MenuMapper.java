@@ -2,7 +2,7 @@ package xyz.fusheng.project.core.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import xyz.fusheng.project.model.entity.Menu;
+import xyz.fusheng.project.model.po.SysMenu;
 
 /**
  * <p>
@@ -13,6 +13,6 @@ import xyz.fusheng.project.model.entity.Menu;
  * @since 2022-03-27
  */
 @Mapper
-public interface MenuMapper extends BaseMapper<Menu> {
+public interface MenuMapper extends BaseMapper<SysMenu> {
 
 }

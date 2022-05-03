@@ -1,36 +1,46 @@
-package xyz.fusheng.project.model.entity;
+package xyz.fusheng.project.model.po;
 
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
-import xyz.fusheng.project.model.base.BaseEntity;
+import lombok.Data;
+import xyz.fusheng.project.model.base.BasePo;
 
 import java.util.Date;
 
 /**
  * <p>
- * 系统表-角色表
+ * 权限表
  * </p>
  *
  * @author code-fusheng
  * @since 2022-03-27
  */
-@Getter
-@Setter
-@TableName("sys_role")
-@ApiModel(value = "Role对象", description = "系统表-角色表")
-public class Role extends BaseEntity {
+@Data
+@TableName("sys_menu")
+@ApiModel(value = "Menu对象", description = "权限表")
+public class SysMenu extends BasePo {
 
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("主键Id")
-    @TableId(value = "role_id", type = IdType.AUTO)
-    private Long roleId;
+    @TableId(value = "menu_id", type = IdType.AUTO)
+    private Long menuId;
 
-    @ApiModelProperty("角色名称")
-    private String roleName;
+    @ApiModelProperty("权限名称")
+    private String name;
+
+    @ApiModelProperty("权限标识")
+    private String permission;
+
+    @ApiModelProperty("权限路由")
+    private String path;
+
+    @ApiModelProperty("父级id")
+    private Integer pid;
+
+    @ApiModelProperty("权限级别 1 2 3")
+    private Integer level;
 
     @ApiModelProperty("状态")
     private Integer state;
@@ -45,12 +55,12 @@ public class Role extends BaseEntity {
     @Version
     private Integer version;
 
-    @ApiModelProperty("是否启用(1:已启用/0:未启用)")
-    private Integer isEnabled;
-
-    @ApiModelProperty("是否逻辑删除(1:已删除/0:未删除)")
+    @ApiModelProperty("逻辑删除位 1：已删除 0：未删除")
     @TableLogic
     private Integer isDeleted;
+
+    @ApiModelProperty("状态位 1：启用 0：弃用")
+    private Integer isEnabled;
 
     @ApiModelProperty("创建者编号")
     @TableField(fill = FieldFill.INSERT)
@@ -71,13 +81,21 @@ public class Role extends BaseEntity {
     @ApiModelProperty("创建时间")
     private Date createdTime;
 
-    @ApiModelProperty("修改时间")
-    private Date updatedTime;
+    @ApiModelProperty("更新时间")
+    private Date updateTime;
 
 
-    public static final String ROLE_ID = "role_id";
+    public static final String MENU_ID = "menuId";
 
-    public static final String ROLE_NAME = "role_name";
+    public static final String NAME = "name";
+
+    public static final String PERMISSION = "permission";
+
+    public static final String PATH = "path";
+
+    public static final String PID = "pid";
+
+    public static final String LEVEL = "level";
 
     public static final String STATE = "state";
 
@@ -87,9 +105,9 @@ public class Role extends BaseEntity {
 
     public static final String VERSION = "version";
 
-    public static final String IS_ENABLED = "is_enabled";
-
     public static final String IS_DELETED = "is_deleted";
+
+    public static final String IS_ENABLED = "is_enabled";
 
     public static final String CREATOR_ID = "creator_id";
 
@@ -101,6 +119,6 @@ public class Role extends BaseEntity {
 
     public static final String CREATED_TIME = "created_time";
 
-    public static final String UPDATED_TIME = "updated_time";
+    public static final String UPDATE_TIME = "update_time";
 
 }

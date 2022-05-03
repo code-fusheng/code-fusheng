@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import xyz.fusheng.project.common.constants.GlobalConstants;
 import xyz.fusheng.project.core.mapper.UserMapper;
 import xyz.fusheng.project.core.service.IUserService;
-import xyz.fusheng.project.model.entity.Menu;
-import xyz.fusheng.project.model.entity.Role;
-import xyz.fusheng.project.model.entity.User;
+import xyz.fusheng.project.model.po.SysMenu;
+import xyz.fusheng.project.model.po.SysRole;
+import xyz.fusheng.project.model.po.SysUser;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
  * @since 2022-03-27
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, SysUser> implements IUserService {
 
     @Resource
     private UserMapper userMapper;
@@ -33,11 +33,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * @return
      */
     @Override
-    public User selectUserByUsername(String username) {
-        User user = userMapper.selectOne(new LambdaQueryWrapper<User>()
-                .eq(User::getUsername, username)
-                .eq(User::getIsEnabled, GlobalConstants.YES));
-        return user;
+    public SysUser selectUserByUsername(String username) {
+        SysUser sysUser = userMapper.selectOne(new LambdaQueryWrapper<SysUser>()
+                .eq(SysUser::getUsername, username)
+                .eq(SysUser::getIsEnabled, GlobalConstants.YES));
+        return sysUser;
     }
 
     /**
@@ -46,11 +46,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * @return
      */
     @Override
-    public User selectUserByMobile(String mobile) {
-        User user = userMapper.selectOne(new LambdaQueryWrapper<User>()
-                .eq(User::getMobile, mobile)
-                .eq(User::getIsEnabled, GlobalConstants.YES));
-        return user;
+    public SysUser selectUserByMobile(String mobile) {
+        SysUser sysUser = userMapper.selectOne(new LambdaQueryWrapper<SysUser>()
+                .eq(SysUser::getMobile, mobile)
+                .eq(SysUser::getIsEnabled, GlobalConstants.YES));
+        return sysUser;
     }
 
     /**
@@ -59,7 +59,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * @return
      */
     @Override
-    public List<Role> selectRoleByUserId(Long userId) {
+    public List<SysRole> selectRoleByUserId(Long userId) {
         return this.baseMapper.selectRoleByUserId(userId);
     }
 
@@ -69,7 +69,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      * @return
      */
     @Override
-    public List<Menu> selectMenuByUserId(Long userId) {
+    public List<SysMenu> selectMenuByUserId(Long userId) {
         return this.baseMapper.selectMenuByUserId(userId);
     }
 }

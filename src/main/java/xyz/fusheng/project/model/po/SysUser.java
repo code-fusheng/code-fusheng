@@ -1,11 +1,10 @@
-package xyz.fusheng.project.model.entity;
+package xyz.fusheng.project.model.po;
 
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
-import xyz.fusheng.project.model.base.BaseEntity;
+import lombok.Data;
+import xyz.fusheng.project.model.base.BasePo;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -18,11 +17,10 @@ import java.util.Date;
  * @author code-fusheng
  * @since 2022-03-27
  */
-@Getter
-@Setter
+@Data
 @TableName("sys_user")
 @ApiModel(value = "User对象", description = "系统表-用户表")
-public class User extends BaseEntity {
+public class SysUser extends BasePo {
 
     private static final long serialVersionUID = 1L;
 

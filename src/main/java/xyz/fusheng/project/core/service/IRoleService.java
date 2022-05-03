@@ -1,7 +1,7 @@
 package xyz.fusheng.project.core.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import xyz.fusheng.project.model.entity.Role;
+import xyz.fusheng.project.model.po.SysRole;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import xyz.fusheng.project.model.entity.Role;
  * @author code-fusheng
  * @since 2022-03-27
  */
-public interface IRoleService extends IService<Role> {
+public interface IRoleService extends IService<SysRole> {
 
 }

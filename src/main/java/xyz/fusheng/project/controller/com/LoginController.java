@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.fusheng.project.core.service.IUserService;
 import xyz.fusheng.project.model.base.BaseResult;
-import xyz.fusheng.project.model.entity.User;
+import xyz.fusheng.project.model.po.SysUser;
 import xyz.fusheng.project.tools.security.entity.CustomUser;
 import xyz.fusheng.project.tools.security.utils.SecurityUtils;
 
@@ -31,10 +31,10 @@ public class LoginController {
 
     @ApiOperation("获取用户信息接口")
     @GetMapping("/info")
-    public BaseResult<User> info() {
+    public BaseResult<SysUser> info() {
         CustomUser userInfo = SecurityUtils.getUserInfo();
-        User user = iUserService.selectUserByUsername(userInfo.getUsername());
-        return BaseResult.success(user);
+        SysUser sysUser = iUserService.selectUserByUsername(userInfo.getUsername());
+        return BaseResult.success(sysUser);
     }
 
     @ApiOperation("注册接口")
