@@ -20,6 +20,7 @@ feature : 技术案例 --- 新增 Hikari JMX MBean 连接池信息注册以及�
 file : 归档管理 --- 初始化DB数据 D-V0.1.0.sql 文件，用于初始化系统元数据
 design : 架构设计 --- 调整系统整体实体对象结构,新增领域驱动模型domain以及持久层po模型
 feature : 技术案例 --- (待完善)新增 JudgmentTest 类:描述等值判断在各个场景下的问题
+feature : 技术案例 --- 新增 PrecisionTest 类:描述类型精度在各个场景下的问题与处理
 ```
 
 

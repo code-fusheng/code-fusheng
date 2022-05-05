@@ -2,20 +2,19 @@ package xyz.fusheng.project.demo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @FileName: JudgmentTest
  * @Author: code-fusheng
  * @Date: 2022/5/3 21:19
  * @Version: 1.0
- * @Description: 判等问题
+ * @Description: 判断等值问题
  * 1. equals() 方法
  * 2. '==' 操作符
  */
@@ -100,10 +99,23 @@ public class JudgmentTest {
         logger.info("[index1:{}, index2:{}]", index1, index2);
     }
 
+    /**
+     * 符合预期
+     * BigDecimal 的比较是比较对象的 value 值与 scale 精度值，只有两者相等才是 true
+     * 如果我们只希望比较 BigDecimal 的 value 值可以使用 compareTo() 方法
+     */
+    private static void test4() {
+        BigDecimal num1 = new BigDecimal("1.0");
+        BigDecimal num2 = new BigDecimal("1");
+        logger.info("[num1.equals(num2) ? {}]", num1.equals(num2));
+        logger.info("[num1.compareTo(num2) ? {}]", num1.compareTo(num2) == 0);
+    }
+
     public static void main(String[] args) {
         //test1();
         //test2();
-        test3();
+        //test3();
+        test4();
     }
 
 }
