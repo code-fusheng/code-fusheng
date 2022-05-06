@@ -1,13 +1,16 @@
 package xyz.fusheng.project.controller.com;
 
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import xyz.fusheng.project.common.exception.BusinessException;
 import xyz.fusheng.project.common.holder.ThreadLocalContext;
 import xyz.fusheng.project.common.utils.ThreadPoolUtils;
+import xyz.fusheng.project.core.service.ITestService;
 import xyz.fusheng.project.model.base.BaseResult;
 
 import javax.annotation.Resource;
@@ -181,6 +184,103 @@ public class ComTestController {
         customThreadPool.shutdown();
         customThreadPool.awaitTermination(1, TimeUnit.HOURS);
         return BaseResult.success(null);
+    }
+
+    @ApiOperation("测试GlobalExceptionHandler效果")
+    @PostMapping("/testGlobalExceptionHandler")
+    public BaseResult<Object> testGlobalExceptionHandler() {
+        if (true) {
+            throw new BusinessException("测试异常");
+        }
+        return BaseResult.success(null);
+    }
+
+    /**
+     * 可以在日志中看到，尽管在 try 代码块和 catch 代码块中都出现了异常，但是最终都被 finally 中的异常覆盖了
+     * 这样可能会导致生产环境异常信息变得不稳定、不明显 怎么才算明显? 返回 Try Exception
+     * @return
+     */
+    @ApiOperation("测试Finally代码块异常问题")
+    @PostMapping("/testFinallyExceptionError")
+    public BaseResult<Object> testFinallyExceptionError() {
+        try {
+            logger.info("[测试Finally代码块异常问题-Try]");
+            throw new BusinessException("Try Exception");
+        } catch (Exception e) {
+            logger.info("[测试Finally代码块异常问题-Catch]");
+        } finally {
+            logger.info("[测试Finally代码块异常问题-Finally]");
+            throw new BusinessException("Finally Exception");
+        }
+    }
+
+    /**
+     * 解决方案:一
+     * finally 代码块自己负责异常捕获和处理，因为一个方法无法出现两个异常
+     */
+    @ApiOperation("测试Finally代码块异常-优化一")
+    @PostMapping("/testFinallyExceptionRight1")
+    public BaseResult<Object> testFinallyExceptionRight1() {
+        try {
+            logger.info("[测试Finally代码块异常问题-Try]");
+            throw new BusinessException("Try Exception");
+        } finally {
+            logger.info("[测试Finally代码块异常问题-Finally]");
+            try {
+                throw new BusinessException("Finally Exception");
+            } catch (Exception ex) {
+                logger.error("[测试Finally代码块异常问题-Finally-Catch]", ex);
+            }
+        }
+    }
+
+    /**
+     * 解决方案:二
+     * 使用 addSuppressed 方法把 finally 中的异常附加到主异常上
+     * 这其实是一种 try-with-resources 语法的做法，对于实现了 AutoCloseable 接口的资源，使用这种方式会合并多个异常，不会丢失!
+     */
+    @ApiOperation("测试Finally代码块异常-优化二")
+    @PostMapping("/testFinallyExceptionRight2")
+    public BaseResult<Object> testFinallyExceptionRight2() throws Exception {
+        Exception e = null;
+        try {
+            logger.info("[测试Finally代码块异常问题-Try]");
+            throw new BusinessException("Try Exception");
+        } catch (Exception ex) {
+            e = ex;
+            logger.info("[测试Finally代码块异常问题-Catch]");
+        } finally {
+            logger.info("[测试Finally代码块异常问题-Finally]");
+            try {
+                throw new BusinessException("Finally Exception");
+            } catch (Exception ex) {
+                if (e != null) {
+                    e.addSuppressed(ex);
+                } else {
+                    e = ex;
+                }
+            }
+        }
+        throw e;
+    }
+
+    @ApiOperation("测试AutoCloseable异常情况")
+    @PostMapping("/testAutoCloseableException")
+    public BaseResult<Object> testAutoCloseableException() throws Exception {
+        try (TestResource testResource = new TestResource()) {
+            testResource.read();
+        }
+        return BaseResult.success(null);
+    }
+
+    public class TestResource implements AutoCloseable {
+        public void read() throws Exception{
+            throw new Exception("read error");
+        }
+        @Override
+        public void close() throws Exception {
+            throw new Exception("close error");
+        }
     }
 
 }

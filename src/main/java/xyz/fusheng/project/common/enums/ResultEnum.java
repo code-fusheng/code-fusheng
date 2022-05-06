@@ -43,7 +43,9 @@ public enum ResultEnum {
     /**
      * 系统自定义异常
      */
-    BUSINESS_ERROR(99999, "统一业务异常");
+    BUSINESS_ERROR(99999, "统一业务异常"),
+    SYSTEM_ERROR(50000, "系统未知异常"),
+    ;
 
     /**
      * code 响应码
