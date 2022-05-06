@@ -22,7 +22,7 @@ design : 架构设计 --- 调整系统整体实体对象结构,新增领域驱�
 feature : 易错案例 --- (待补充)新增 JudgmentTest 类:描述等值判断在各个场景下的问题
 feature : 易错案例 --- 新增 PrecisionTest 类:描述类型精度在各个场景下的问题与处理
 feature : 易错案例 --- 新增 CollectionTest 类:描述了 Arrays.asList 与 Collection 中部分使用的易错问题
-feature : 易错案例 --- (待完善)新增 NullPointerTest 类:描述了常见的几种空指针场景
+feature : 易错案例 --- 新增 NullPointerTest 类:描述了常见的几种空指针场景以及优化处理方式
 ```
 
 

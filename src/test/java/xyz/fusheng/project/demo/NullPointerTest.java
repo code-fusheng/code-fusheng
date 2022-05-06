@@ -5,7 +5,10 @@ import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -34,6 +37,9 @@ public class NullPointerTest {
         } catch (Exception e) {
             logger.info("[Case1:Integer-异常信息] => type:{}, e:{}", e.getClass().getName(), e.getMessage(), e);
         }
+        // 优化方式
+        int i3 = Optional.ofNullable(i1).orElse(0) + 1;
+        logger.info("[Case1:Integer-优化结果] => i3:{}", i3);
 
         // 2. 字符串比较出现空指针异常；
         String s1 = null;
@@ -42,6 +48,10 @@ public class NullPointerTest {
         } catch (Exception e) {
             logger.info("[Case2:String-异常信息] => type:{}, e:{}", e.getClass().getName(), e.getMessage(), e);
         }
+        // 优化方式
+        logger.info("[Case2:String-优化结果] => \"OK\".equals(s1) = {}", "OK".equals(s1));
+        // 优化方式
+        logger.info("[Case2:String-优化结果] => Objects.equals(s1, \"OK\") = {}", Objects.equals(s1, "OK"));
 
         // 3. 诸如 ConcurrentHashMap 这样的容器不支持 Key 和 Value 为 null，强行 put pull 会出现空指针异常；
         try {
@@ -70,6 +80,9 @@ public class NullPointerTest {
         } catch (Exception e) {
             logger.info("[Case4:a -> b.value-异常信息] => type:{}, e:{}", e.getClass().getName(), e.getMessage(), e);
         }
+        // 优化方式
+        String bValue = Optional.ofNullable(a2.getValue()).orElse(new B("new b")).getValue();
+        logger.info("[Case4:Object级联引用-优化结果] => a -> b.value() = {}", bValue);
 
         // 5. 方法或者远程服务RPC返回集合不是空而是 NULL，没有进行判空处理就调用对应的方法；
         List list = null;
@@ -78,6 +91,9 @@ public class NullPointerTest {
         } catch (Exception e) {
             logger.info("[Case5:list-异常信息] => type:{}, e:{}", e.getClass().getName(), e.getMessage(), e);
         }
+        // 优化方式
+        int size = Optional.ofNullable(list).orElse(Collections.EMPTY_LIST).size();
+        logger.info("[Case5:list-优化结果] => size:{}", size);
 
     }
 
