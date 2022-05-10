@@ -25,6 +25,7 @@ feature : 易错问题 --- 新增 CollectionTest 类:描述了 Arrays.asList 与
 feature : 易错问题 --- 新增 NullPointerTest 类:描述了常见的几种空指针场景以及优化处理方式
 feature : 易错问题 --- 新增 Exception 异常情况的场景与处理方式
 feature : 架构设计 --- 新增 GlobalExceptionHandler 以及 Exceptions 等异常处理类与场景测试
+feature : 易错问题 --- 新增 ThreadPoolExceptionTest 类: 阐述了线程池的常见异常处理方式
 ```
 
 

@@ -17,10 +17,14 @@ public class ThreadLocalContext {
 
     private static final Logger logger = LoggerFactory.getLogger(ThreadLocalContext.class);
 
-    // 测试标记
+    /**
+     * 测试标记
+     */
     private String mark = "test";
 
-    // 本地线程变量
+    /**
+     * 本地线程变量
+     */
     private static ThreadLocal<ThreadLocalContext> threadLocal = new ThreadLocal<>();
 
     public static ThreadLocalContext get() {
@@ -28,8 +32,7 @@ public class ThreadLocalContext {
             ThreadLocalContext threadLocalContext = new ThreadLocalContext();
             threadLocal.set(threadLocalContext);
         }
-        ThreadLocalContext threadLocalContext = threadLocal.get();
-        return threadLocalContext;
+        return threadLocal.get();
     }
 
     public void removeAll() {

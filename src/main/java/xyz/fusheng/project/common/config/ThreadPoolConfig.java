@@ -45,13 +45,18 @@ public class ThreadPoolConfig {
     @Bean("customThreadPool")
     public ExecutorService customThreadPool() {
         logger.info("初始化固定线程池开始!");
-        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat(CUSTOM_THREAD_POOL_PREFIX).build();
+        ThreadFactory threadFactory = new ThreadFactoryBuilder()
+                .setNameFormat(CUSTOM_THREAD_POOL_PREFIX)
+                // 未捕获异常自定义处理方式
+                .setUncaughtExceptionHandler((thread, throwable) -> logger.error("[自定义线程池-发生未捕获异常] => ThreadPool:{}", thread, throwable))
+                .build();
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
                 CORE_POOL_SIZE,
                 MAX_POOL_SIZE,
                 KEEP_ALIVE_TIME,
                 TimeUnit.SECONDS,
-                new SynchronousQueue<>(),   // 没有存储容量的阻塞队列
+                // 没有存储容量的阻塞队列
+                new SynchronousQueue<>(),
                 threadFactory);
         logger.info("初始化固定线程池结束 - 核心线程大小:{}, 最大线程容量:{}, 工作线程数:{}, 总任务数:{}",
                 threadPoolExecutor.getCorePoolSize(), threadPoolExecutor.getMaximumPoolSize(), threadPoolExecutor.getActiveCount(), threadPoolExecutor.getTaskCount());
