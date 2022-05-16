@@ -23,6 +23,11 @@ public class ThreadLocalContext {
     private String mark = "test";
 
     /**
+     * 请求ID
+     */
+    private String requestId = "";
+
+    /**
      * 本地线程变量
      */
     private static ThreadLocal<ThreadLocalContext> threadLocal = new ThreadLocal<>();
