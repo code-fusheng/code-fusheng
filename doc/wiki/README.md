@@ -27,6 +27,7 @@ feature : 易错问题 --- 新增 Exception 异常情况的场景与处理方式
 feature : 架构设计 --- 新增 GlobalExceptionHandler 以及 Exceptions 等异常处理类与场景测试
 feature : 易错问题 --- 新增 ThreadPoolExceptionTest 类: 阐述了线程池的常见异常处理方式
 feature : 系统日志 --- 探索系统日志 requestId 的设计实现方式
+feature : 系统日志/易错问题 --- 新增 logback-spring.xml 的使用细节与常见问题
 ```
 
 
