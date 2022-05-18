@@ -40,6 +40,8 @@ feature : 系统日志/易错问题 --- 新增 logback-spring.xml 的使用细�
 
 [Spring Boot](https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E)
 
+可以使用 mvn dependency:tree 查看 jar 包依赖树
+
 #### 2.2 Actuator 端点说明
 
 Spring Boot Actuator 默认开启 health 和 info，其他的需要通过
@@ -72,3 +74,5 @@ AOP 拦截通知
 > @Profile & @Conditional
 
 配置化条件装配 & 编程式条件装配
+
+### 三、常用指令

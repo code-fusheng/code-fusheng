@@ -1,4 +1,4 @@
-package xyz.fusheng.project.demo;
+package xyz.fusheng.project.errordemo;
 
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package xyz.fusheng.project.demo;
+package xyz.fusheng.project.errordemo;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -6,10 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.UUID;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * @FileName: LogTest
