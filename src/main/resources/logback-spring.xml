@@ -4,8 +4,9 @@
     <property name="log.dir" value="logs"/> <!-- 日志路径，这里是相对路径，web项目eclipse下会输出到eclipse的安装目录下，如果部署到linux上的tomcat下，会输出到tomcat/bin目录 下 -->
     <property name="log.appName" value="code-fusheng" /> <!-- 应用名称 -->
     <property name="log.moduleName" value="code-fusheng" /> <!-- 微服务模块名称 -->
-    <!-- 日志输出方式: 控制台 -->
-    <!-- 就是把日志输出到 System.out/System.err -->
+    <property name="log.max.size" value="20MB" /> <!-- 日志文件大小 -->
+
+    <!-- 日志输出方式: 控制台 就是把日志输出到 System.out/System.err -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <!-- PatternLayout 定义日志的输出格式 -->
         <layout class="ch.qos.logback.classic.PatternLayout">

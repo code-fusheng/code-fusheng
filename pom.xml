@@ -32,6 +32,8 @@
         <elasticsearch.version>7.6.1</elasticsearch.version>
         <apache-poi.version>5.2.2</apache-poi.version>
         <apache-pdfbox.version>2.0.26</apache-pdfbox.version>
+        <!-- redis 相关 -->
+        <jedis.version>2.9.0</jedis.version>
 
     </properties>
 
@@ -239,6 +241,18 @@
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox-tools</artifactId>
             <version>${apache-pdfbox.version}</version>
+        </dependency>
+
+        <!-- Redis 操作基础客户端 Jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+        <!-- Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
     </dependencies>

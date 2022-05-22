@@ -29,6 +29,7 @@ feature : 易错问题 --- 新增 ThreadPoolExceptionTest 类: 阐述了线程�
 feature : 系统日志 --- 探索系统日志 requestId 的设计实现方式
 feature : 系统日志/易错问题 --- 新增 logback-spring.xml 的使用细节与常见问题
 feature : 易错问题 --- 新增 FileIOErrorTest 类:描述文件 IO 使用过程中常见的问题与处理方式
+feature : 易错问题 --- 新增 RedisTest 类: 通过使用默认的 RedisTemplate 与 StringRedisTemplate，探索自定义 Redis 序列化的起源
 ```
 
 

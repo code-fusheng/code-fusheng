@@ -1,6 +1,9 @@
 package xyz.fusheng.project.model.domain;
 
 import io.swagger.annotations.Api;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import xyz.fusheng.project.model.base.BaseModel;
 
 /**
  * @FileName: Model
@@ -11,6 +14,14 @@ import io.swagger.annotations.Api;
  */
 
 @Api(tags = "领域驱动模版模型")
-public class Model {
+@Data
+@AllArgsConstructor
+public class Model extends BaseModel {
+
+    private String id;
+
+    private String label;
+
+    private String value;
 
 }

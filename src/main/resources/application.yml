@@ -14,3 +14,9 @@ spring:
   elasticsearch:
     rest:
       uris: 42.192.222.62:9200
+  redis:
+    host: 42.192.222.62
+    port: 6390
+    password: Xcode-redis?
+    database: 7
+
