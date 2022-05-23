@@ -69,7 +69,7 @@ public class RedisTest {
      * 通过使用默认的 RedisTemplate 和 StringRedisTemplate 在实际存储中的效果，引出自定义 RedisTemplate Key 和 Value 的序列化方式起源。
      */
     @Test
-    public void testRedisTemplate() throws JsonProcessingException {
+    public void testRedisTemplateError() throws JsonProcessingException {
         /**
          * 这里使用默认的 {@link RedisTemplate} 设置 Redis 数据，会造成 Redis 数据乱码。
          * 默认情况下 RedisTemplate 针对 Key 和 Value 使用了 JDK 序列化。  {@link RedisTemplate#afterPropertiesSet() => JdkSerializationRedisSerializer}
