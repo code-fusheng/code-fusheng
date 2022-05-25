@@ -1,11 +1,17 @@
 package xyz.fusheng.project.tooldemo.office;
 
 import com.deepoove.poi.XWPFTemplate;
-import com.deepoove.poi.data.*;
+import com.deepoove.poi.data.ChartSingleSeriesRenderData;
+import com.deepoove.poi.data.Charts;
+import com.deepoove.poi.data.Tables;
+import com.deepoove.poi.data.Texts;
 import com.deepoove.poi.data.style.BorderStyle;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xddf.usermodel.chart.*;
-import org.apache.poi.xwpf.usermodel.*;
+import org.apache.poi.xwpf.usermodel.XWPFChart;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,6 +23,8 @@ import java.util.HashMap;
  * @Date: 2022/5/23 11:25
  * @Version: 1.0
  * @Description:
+ * 参考文档:
+ * http://deepoove.com/poi-tl/
  */
 
 public class PoiTlWordTest {

@@ -4,16 +4,9 @@ import org.apache.poi.xwpf.usermodel.Borders;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 /**
  * @FileName: ApachePoiWordTest
@@ -21,6 +14,9 @@ import java.nio.file.Paths;
  * @Date: 2022/5/23 10:36
  * @Version: 1.0
  * @Description: ApachePoiWordTest
+ * 参考文档:
+ * https://www.tutorialspoint.com/apache_poi_word/index.htm
+ * https://www.w3cschool.cn/apache_poi_word/apache_poi_word_overview.html
  */
 
 public class ApachePoiWordTest {

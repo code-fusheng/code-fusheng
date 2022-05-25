@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -15,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-import xyz.fusheng.project.common.config.RedisConfig;
+import xyz.fusheng.project.tools.redis.config.RedisConfig;
 import xyz.fusheng.project.model.domain.Model;
 
 /**
@@ -29,7 +30,6 @@ import xyz.fusheng.project.model.domain.Model;
  * 2. 自定义 RedisTemplate 的序列化配置 {@link RedisConfig} 可以参考 {@link StringRedisTemplate} 对 {@link RedisTemplate<String, String>} 的重写。
  *    Key 的序列化方式使用 RedisSerializer.string() [StringRedisSerializer 方式]
  *    Value 的序列化方式使用 {@link Jackson2JsonRedisSerializer}
- *
  */
 
 @SpringBootTest
@@ -81,9 +81,9 @@ public class RedisTest {
          */
         stringRedisTemplate.opsForValue().set("stringRedisTemplate:test1", objectMapper.writeValueAsString(new Model("1", "redis", "stringRedisTemplate")));
         // null
-        logger.info("[redisTemplate] => value:{}", redisTemplate.opsForValue().get("stringRedisTemplate:test1"));
+        //logger.info("[redisTemplate] => value:{}", redisTemplate.opsForValue().get("stringRedisTemplate:test1"));
         // null
-        logger.info("[stringRedisTemplate] => value:{}", stringRedisTemplate.opsForValue().get("redisTemplate:test1"));
+        //logger.info("[stringRedisTemplate] => value:{}", stringRedisTemplate.opsForValue().get("redisTemplate:test1"));
 
         // 使用 RedisTemplate 获取 Value，无需反序列化就可以拿到实际对象，虽然方便，但是不处理的化数据不可读。
         Model modelFromRedisTemplate = (Model) this.redisTemplate.opsForValue().get("redisTemplate:test1");

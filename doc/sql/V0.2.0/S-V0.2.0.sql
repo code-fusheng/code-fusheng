@@ -1,7 +1,33 @@
+-- 新增库表
+DROP TABLE IF EXISTS `mall_product_spu`;
+CREATE TABLE `mall_product_spu`
+(
+    `id`             varchar(50) NOT NULL COMMENT '主键',
+    `product_name`   varchar(512)         DEFAULT NULL COMMENT '产品名称',
+    `product_title`  varchar(256)         DEFAULT NULL COMMENT '产品标题',
+    `product_images` varchar(1024)        DEFAULT NULL COMMENT '产品图样',
+    `category_id`    varchar(50)          DEFAULT NULL COMMENT '产品分类',
+    `product_desc`   mediumtext COMMENT '产品描述',
+    `state`          tinyint              DEFAULT NULL COMMENT '产品状态',
+    `remark`         varchar(255)         DEFAULT NULL COMMENT '备注',
+    `memo`           text COMMENT '拓展',
+    `version`        int         NOT NULL DEFAULT '1' COMMENT '乐观锁 默认1',
+    `is_enabled`     tinyint(1) DEFAULT '1' COMMENT '是否启用(1:已启用/0:未启用)',
+    `is_deleted`     tinyint(1) DEFAULT '0' COMMENT '是否逻辑删除(1:已删除/0:未删除)',
+    `creator_id`     varchar(50)          DEFAULT NULL COMMENT '创建者编号',
+    `updater_id`     varchar(50)          DEFAULT NULL COMMENT '修改者编号',
+    `creator_name`   varchar(100)         DEFAULT NULL COMMENT '创建者姓名',
+    `updater_name`   varchar(100)         DEFAULT NULL COMMENT '修改者姓名',
+    `created_time`   datetime             DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_time`   datetime             DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='商城-产品SPU表';
+
+-- 历史库表
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`
 (
-    `user_id`           bigint       NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+    `user_id`      bigint       NOT NULL AUTO_INCREMENT COMMENT '主键Id',
     `uuid`         varchar(200) NOT NULL COMMENT '全局唯一用户ID',
     `username`     varchar(50)  NOT NULL COMMENT '用户名',
     `password`     varchar(200) NOT NULL COMMENT '密码',
@@ -35,7 +61,7 @@ CREATE TABLE `sys_user`
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`
 (
-    `role_id`           bigint      NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+    `role_id`      bigint      NOT NULL AUTO_INCREMENT COMMENT '主键Id',
     `role_name`    varchar(50) NOT NULL COMMENT '角色名称',
     `state`        tinyint(1) DEFAULT NULL COMMENT '状态',
     `remark`       varchar(255) DEFAULT NULL COMMENT '备注',
@@ -55,7 +81,7 @@ CREATE TABLE `sys_role`
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`
 (
-    `menu_id`           bigint      NOT NULL AUTO_INCREMENT COMMENT '主键Id',
+    `menu_id`      bigint      NOT NULL AUTO_INCREMENT COMMENT '主键Id',
     `name`         varchar(50) NOT NULL COMMENT '权限名称',
     `permission`   varchar(200)         DEFAULT NULL COMMENT '权限标识',
     `path`         varchar(200)         DEFAULT NULL COMMENT '权限路由',
@@ -101,5 +127,3 @@ CREATE TABLE `sys_role_menu`
     `created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`  datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色与权限关系表';
-
-

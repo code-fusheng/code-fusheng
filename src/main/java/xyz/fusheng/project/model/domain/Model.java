@@ -3,6 +3,7 @@ package xyz.fusheng.project.model.domain;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import xyz.fusheng.project.model.base.BaseModel;
 
 /**
@@ -15,6 +16,7 @@ import xyz.fusheng.project.model.base.BaseModel;
 
 @Api(tags = "领域驱动模版模型")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Model extends BaseModel {
 

@@ -12,6 +12,7 @@ package xyz.fusheng.project.errordemo;
  *                  如今 RESTFul 应用 JSON 序列化；
  *                  追求性能的 RPC 框架使用 protobuf 序列化。
  * 3. 序列化和反序列化需要确保算法一致!!! 这里通过平时生产开发中使用较多的 Redis 来体现序列化和反序列化算法一致性的重要性。
+ * 4. 默认情况下，在反序列化的时候，Jackson 框架只会调用无参构造方法创建对象。
  *
  */
 
