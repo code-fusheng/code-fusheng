@@ -33,6 +33,7 @@ feature : 易错问题 --- 新增 RedisTest 类: 通过使用默认的 RedisTemp
 feature : 系统配置 --- 新增 RedisConfig 类, 依据前面探索实践的结果对 Redis 的(反)序列化做相应的合理配置
 feature : 技术研究 --- 新增 poi-tl 基于 apache poi 的 office 工具; 新增 echarts-java 构建 html 节点树
 feature : 易错问题 --- 新增 DateTest 类: 研究使用 Java8 前后的时间、日期类
+feature : 易错问题 --- 完善 DateTest 类: 新增 LocalDateTime 日期计算与常用工具方法
 ```
 
 

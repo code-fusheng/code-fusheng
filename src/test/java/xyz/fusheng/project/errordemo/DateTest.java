@@ -1,5 +1,6 @@
 package xyz.fusheng.project.errordemo;
 
+import org.assertj.core.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,12 +10,16 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -219,7 +224,87 @@ public class DateTest {
         String dt = "20220526";
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMM");
         logger.info("[DateTimeFormatter解析结果] => dt:{}", dateTimeFormatter.parse(dt));
+    }
 
+    /**
+     * 日期时间的计算
+     * 时间戳 int 溢出问题
+     */
+    public static void testDateCalculate() {
+
+        // 测试时间计算类型精度溢出 int 类型用于毫秒计算非常容易溢出(PS:大概「24.85」天左右就溢出了)
+        // Integer.MAX_VALUE 2147483647
+        Date today = new Date();
+        logger.info("[时间计算调试-错误-精度溢出] => today:{}", today);
+        // 30 天之后
+        Date nextMonth = new Date(today.getTime() + 24 * 1000 * 60 * 60 * 24);
+        logger.info("[时间计算调试-错误-精度溢出] => today:{}", nextMonth);
+        // nextMonth 本应是 today 晚 30 天之后，但是这里反而还早了
+        logger.info("[时间计算调试-错误-精度溢出] => result:{}", nextMonth.after(today));
+
+        // 正确结果
+        // 30 天之后
+        Date nextMonthTrue = new Date(today.getTime() + 30L * 1000 * 60 * 60 * 24);
+        logger.info("[时间计算调试-正确-精度溢出LONG处理] => result:{}", nextMonthTrue.after(today));
+
+        // Java8 之前的优化方案 ———— Calendar
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DAY_OF_MONTH, 30);
+        logger.info("[时间计算调试-正确-Calender] => calender:{}", calendar.getTime());
+
+        // Java8 之后的解决方案 ———— LocalDateTime
+        LocalDateTime localDateTime = LocalDateTime.now();
+        logger.info("[时间计算调试-正确-LocalDateTime] => result:{}", localDateTime.plusDays(30));
+
+        LocalDateTime localDateTime1 = LocalDateTime.now();
+        logger.info("[时间计算调试-plus和minus日期加减] => localDateTime1:{}", localDateTime1);
+        LocalDateTime resultTime1 = localDateTime1.minus(Period.ofDays(1))
+                .plus(1, ChronoUnit.DAYS)
+                .minusMonths(1)
+                .plus(Period.ofMonths(1));
+        logger.info("[时间计算调试-plus和minus日期加减] => resultTime1:{}", resultTime1);
+    }
+
+    /**
+     * 快捷时间调节测试
+     * {@link LocalDateTime#with(TemporalAdjuster)}
+     */
+    public static void testLocalDate_temporalAdjusters() {
+        logger.info("[函数调试-本月的第一天] => result:{}", LocalDateTime.now().with(TemporalAdjusters.firstDayOfMonth()));
+        logger.info("[函数调试-今天的第一百天] => result:{}", LocalDateTime.now().with(TemporalAdjusters.firstDayOfYear()).plusDays(100));
+        logger.info("[函数调试-今天之前的一个周六] => result:{}", LocalDateTime.now().with(TemporalAdjusters.previous(DayOfWeek.SATURDAY)));
+        logger.info("[函数调试-本月最后一个工作日] => result:{}", LocalDateTime.now().with(TemporalAdjusters.lastInMonth(DayOfWeek.FRIDAY)));
+
+        // 随机添加
+        LocalDateTime time = LocalDateTime.now().with(temporal -> temporal.plus(ThreadLocalRandom.current().nextInt(100), ChronoUnit.DAYS));
+        logger.info("[函数调试-随机增加100以内天数] => result:{}", time);
+
+    }
+
+    /**
+     * 时间访问器
+     */
+    public static void testLocalDate_temporalAccessor() {
+        LocalDateTime nowDate = LocalDateTime.now();
+        int month = nowDate.get(ChronoField.MONTH_OF_YEAR);
+        int day = nowDate.get(ChronoField.DAY_OF_MONTH);
+        if (month == Month.APRIL.getValue() && day == 1) {
+            logger.info("[{}]", Boolean.TRUE);
+        } else {
+            logger.info("[{}]", Boolean.FALSE);
+        }
+    }
+
+    /**
+     * 日期间隔
+     */
+    public static void testLocalDate_dayBetween() {
+        LocalDate today = LocalDate.of(2019, 12, 12);
+        LocalDate specifyDate = LocalDate.of(2019, 10, 1);
+        logger.info("[计算日期差-错误-Period.between] => result:{}", Period.between(specifyDate, today).getDays());
+        //System.out.println(Period.between(specifyDate, today));
+        logger.info("[计算日期差-正确-ChronoUnit.DAYS.between] => result:{}", ChronoUnit.DAYS.between(specifyDate, today));
     }
 
     public static void main(String[] args) throws ParseException, InterruptedException {
@@ -232,8 +317,14 @@ public class DateTest {
         //testFormatAndParseError1();
         //testSimpleDateFormatThreadUnSafe();
         //testSimpleDateFormatUnMatchError();
+        //testDateTimeFormatter();
 
-        testDateTimeFormatter();
+        // 日期时间的计算调试
+        //testDateCalculate();
+
+        //testLocalDate_temporalAdjusters();
+        //testLocalDate_temporalAccessor();
+        testLocalDate_dayBetween();
     }
 
 
