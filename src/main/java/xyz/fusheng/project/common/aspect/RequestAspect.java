@@ -21,6 +21,12 @@ import org.springframework.stereotype.Component;
  * 4、@AfterThrowing  异常抛出通知 - 在方法抛出异常后实施增强，可以应用于处理异常记录日志等功能
  * 5、@DeclareParents 引介通知 - 在目标类中添加一些新的方法和属性，可以应用于修改老版本程序
  * 6、@After          最终通知
+ *
+ * 相关概念
+ * JoinPoint 连接点
+ * Aspect 切面
+ * Pointcut 切点
+ * Advice 增强
  */
 
 @Aspect

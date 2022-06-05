@@ -98,7 +98,9 @@ public class NullPointerTest {
     }
 
     public static void main(String[] args) {
-        testNullPointer();
+        //testNullPointer();
+        Long flag = 0L;
+        System.out.println(Objects.equals(flag, 0L));
     }
 
 }

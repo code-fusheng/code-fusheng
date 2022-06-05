@@ -264,6 +264,13 @@ public class DateTest {
                 .minusMonths(1)
                 .plus(Period.ofMonths(1));
         logger.info("[时间计算调试-plus和minus日期加减] => resultTime1:{}", resultTime1);
+
+        LocalDateTime nowLocalDateTime = LocalDateTime.now();
+        LocalDateTime startDateTime = nowLocalDateTime.minusMonths((int) (12 * 10f));
+        LocalDateTime endDateTime = nowLocalDateTime.minusMonths((int) (12 * 0.5f));
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        logger.info("[时间计算调试] => startDateTime:{}, endDateTime:{}", dateTimeFormatter.format(startDateTime), dateTimeFormatter.format(endDateTime));
+
     }
 
     /**
@@ -330,7 +337,7 @@ public class DateTest {
         //testDateTimeFormatter();
 
         // 日期时间的计算调试
-        //testDateCalculate();
+        testDateCalculate();
 
         //testLocalDate_temporalAdjusters();
         //testLocalDate_temporalAccessor();
