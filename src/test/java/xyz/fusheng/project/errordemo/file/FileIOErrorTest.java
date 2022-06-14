@@ -1,4 +1,4 @@
-package xyz.fusheng.project.errordemo;
+package xyz.fusheng.project.errordemo.file;
 
 import com.google.common.base.Charsets;
 import org.apache.commons.codec.binary.Hex;
@@ -284,7 +284,7 @@ public class FileIOErrorTest {
 
     public static void main(String[] args) throws IOException {
         // 文件读写字符集规则问题
-        //testBaseFileReadWrite();
+        testBaseFileReadWrite();
         //testErrorFileRead();
         //testCurrentLocalCharset();
         //testRightFileRead();
@@ -296,11 +296,11 @@ public class FileIOErrorTest {
         // testFiles_lines_freedRight();
 
         // 缓冲区问题
-        testBufferPreBuild();
+        //testBufferPreBuild();
         // testBufferError();
         // testBufferRight1();
         //testBufferRight2();
-        testFileChannel_transferTo();
+        //testFileChannel_transferTo();
     }
 
 }

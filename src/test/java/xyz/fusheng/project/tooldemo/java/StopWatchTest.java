@@ -1,4 +1,4 @@
-package xyz.fusheng.project.errordemo;
+package xyz.fusheng.project.tooldemo.java;
 
 import org.springframework.util.StopWatch;
 

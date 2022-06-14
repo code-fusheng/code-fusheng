@@ -1,4 +1,4 @@
-package xyz.fusheng.project.errordemo;
+package xyz.fusheng.project.errordemo.log;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

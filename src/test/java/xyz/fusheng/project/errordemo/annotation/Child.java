@@ -1,4 +1,4 @@
-package xyz.fusheng.project.errordemo.Annotation;
+package xyz.fusheng.project.errordemo.annotation;
 
 /**
  * @FileName: Child

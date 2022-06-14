@@ -1,4 +1,4 @@
-package xyz.fusheng.project.errordemo;
+package xyz.fusheng.project.errordemo.calculate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

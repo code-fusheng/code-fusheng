@@ -1,4 +1,4 @@
-package xyz.fusheng.project.errordemo;
+package xyz.fusheng.project.errordemo.calculate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

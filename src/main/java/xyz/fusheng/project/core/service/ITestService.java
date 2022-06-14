@@ -1,5 +1,7 @@
 package xyz.fusheng.project.core.service;
 
+import xyz.fusheng.project.model.po.SysUser;
+
 /**
  * @FileName: ITestService
  * @Author: code-fusheng
@@ -10,4 +12,5 @@ package xyz.fusheng.project.core.service;
 
 public interface ITestService {
 
+    void createUser(SysUser sysUser);
 }
