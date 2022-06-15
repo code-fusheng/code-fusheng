@@ -10,7 +10,7 @@
     </parent>
     <groupId>xyz.fusheng</groupId>
     <artifactId>code-fusheng</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>code-fusheng</name>
     <description>code-fusheng</description>
     <properties>
