@@ -52,7 +52,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @author code-fusheng
+ * @author code-fusheng z
  */
 @SpringBootApplication
 @MapperScan("xyz.fusheng.project.core.mapper")
