@@ -2,7 +2,6 @@ package xyz.fusheng.project.common.enums;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import lombok.Getter;
-import org.omg.CORBA.UNKNOWN;
 
 /**
  * @FileName: ModelEnum
