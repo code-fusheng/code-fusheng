@@ -22,7 +22,7 @@ import javax.annotation.Resource;
  * @Description:
  */
 
-@Api(tags = "登录接口管理")
+@Api(tags = "登录接口")
 @RestController
 public class LoginController {
 
@@ -35,13 +35,6 @@ public class LoginController {
         CustomUser userInfo = SecurityUtils.getUserInfo();
         SysUser sysUser = iUserService.selectUserByUsername(userInfo.getUsername());
         return BaseResult.success(sysUser);
-    }
-
-    @ApiOperation("注册接口")
-    @PostMapping("/register")
-    public BaseResult<Object> register() {
-
-        return BaseResult.success(null);
     }
 
     @ApiOperation("登出接口")

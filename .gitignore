@@ -6,6 +6,10 @@ target/
 **/target/
 **/target/*.*
 /logs/
+### 排除安装包
+/doc/env/java/jdk-8u221-linux-x64.tar.gz
+/doc/env/zookeeper/zookeeper-3.7.0-bin.tar.gz
+/doc/env/hadoop/hadoop-3.2.3.tar.gz
 
 ### STS (Spring Tool Suite) ###
 .apt_generated
