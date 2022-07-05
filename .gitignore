@@ -11,6 +11,8 @@ target/
 /doc/env/zookeeper/zookeeper-3.7.0-bin.tar.gz
 /doc/env/hadoop/hadoop-3.2.3.tar.gz
 
+/doc/other
+
 ### STS (Spring Tool Suite) ###
 .apt_generated
 .classpath
