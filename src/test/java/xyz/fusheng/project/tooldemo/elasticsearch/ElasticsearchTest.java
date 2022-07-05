@@ -3,14 +3,19 @@ package xyz.fusheng.project.tooldemo.elasticsearch;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.*;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.update.UpdateResponse;
+import org.elasticsearch.client.HttpAsyncResponseConsumerFactory;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
@@ -33,11 +38,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StopWatch;
+import xyz.fusheng.project.tools.elasticsearch.document.CompanyDocument;
 import xyz.fusheng.project.tools.elasticsearch.document.ModelDocument;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +80,9 @@ public class ElasticsearchTest {
 
     private static final String MODEL_INDEX = "model_index_test";
 
+    // 公司宝 营商云 索引
+    private static final String COMPANY_INDEX = "gsb_zq_company_index_test";
+
     @Test
     public void testEsPing() throws IOException {
         boolean pingState = restHighLevelClient.ping(RequestOptions.DEFAULT);
@@ -91,6 +101,7 @@ public class ElasticsearchTest {
         CreateIndexResponse createIndexResponse2 = restHighLevelClient4GsbZq.indices().create(createIndexRequest, RequestOptions.DEFAULT);
         logger.info("[测试ES索引创建] => createIndexResponse:{}", createIndexResponse2);
     }
+
 
     /**
      * 索引存在
@@ -191,6 +202,32 @@ public class ElasticsearchTest {
             BulkResponse bulkResponse = restHighLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);
             logger.info("[测试ES文档批量创建] => 第「{}」批 bulkResponse#hasFailures:{}", count, bulkResponse.hasFailures());
             count++;
+        }
+    }
+
+    /***********************************版本兼容测试 V6.8.14*******************************************/
+
+    @Test
+    public void testEsDocumentSearch(String companyName, String tag) throws IOException {
+        SearchRequest searchRequest = new SearchRequest().indices(COMPANY_INDEX).types("_doc");
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        sourceBuilder.query(QueryBuilders.termQuery("companyName", "湖南齐家电器贸易有限公司"));
+        searchRequest.source(sourceBuilder);
+        SearchResponse searchResponse = restHighLevelClient4GsbZq.search(searchRequest);
+        if (searchResponse.getHits() != null) {
+            for (SearchHit doc : searchResponse.getHits()) {
+                logger.info("[doc:{}]", doc.getSourceAsString());
+                CompanyDocument companyDocument = objectMapper.readValue(doc.getSourceAsString(), CompanyDocument.class);
+                List<String> companyTagList = CollectionUtils.isNotEmpty(companyDocument.getCompanyTagList()) ? companyDocument.getCompanyTagList() : new ArrayList<>();
+                companyTagList.add("浮生");
+                List<String> finalTagList = companyTagList.stream().distinct().collect(Collectors.toList());
+                companyDocument.setCompanyTagList(finalTagList);
+                companyDocument.setCompanyTags(StringUtils.join(finalTagList, ","));
+                UpdateRequest updateRequest = new UpdateRequest(COMPANY_INDEX, "_doc", companyDocument.getCompanyId());
+                updateRequest.doc(objectMapper.writeValueAsString(companyDocument), XContentType.JSON);
+                UpdateResponse updateResponse = restHighLevelClient4GsbZq.update(updateRequest);
+                logger.info("[解析Excel数据-更新ES企业标签数据结果] => update.status:{}, finalTagList:{}", updateResponse.status(), finalTagList);
+            }
         }
     }
 

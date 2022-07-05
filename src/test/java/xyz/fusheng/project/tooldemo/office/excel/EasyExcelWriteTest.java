@@ -6,14 +6,12 @@ import com.alibaba.excel.write.metadata.WriteSheet;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import xyz.fusheng.project.tools.elasticsearch.document.ModelDocument;
-import xyz.fusheng.project.tools.office.excel.ModelExcel;
+import xyz.fusheng.project.tools.office.excel.model.ModelExcel;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
@@ -30,7 +28,7 @@ import java.util.stream.IntStream;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class EasyExcelTest {
+public class EasyExcelWriteTest {
 
     /**
      * EasyExcel 单次写入测试
@@ -38,7 +36,7 @@ public class EasyExcelTest {
      * @throws IOException
      */
     @Test
-    public void testEasyExcelSingleWrite() throws IOException {
+    public void testEasyExcelSimpleWrite() throws IOException {
         File file = new File(Paths.get("testEasyExcelSingleWrite.xlsx").toString());
         List<ModelExcel> modelExcelList = IntStream.rangeClosed(1, 200000).mapToObj(i -> {
             ModelExcel modelExcel = new ModelExcel();

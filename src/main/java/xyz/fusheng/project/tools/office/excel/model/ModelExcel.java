@@ -1,4 +1,4 @@
-package xyz.fusheng.project.tools.office.excel;
+package xyz.fusheng.project.tools.office.excel.model;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;

@@ -19,4 +19,8 @@ spring:
     port: 6390
     password: Xcode-redis?
     database: 7
+  data:
+    mongodb:
+      uri: mongodb://admin:123456@42.192.222.62:27017/code-fusheng?authSource=admin
+
 
