@@ -85,3 +85,11 @@ AOP 拦截通知
 配置化条件装配 & 编程式条件装配
 
 ### 三、常用指令
+
+clean package docker:build  -DpushImage -Dmaven.test.skip=true -Pprod
+
+docker login --u admin -p Harbor12345 42.192.222.62:9090
+docker tag code-fusheng:latest 42.192.222.62:9090/code-fusheng/code-fusheng:latest
+docker push 42.192.222.62:9090/code-fusheng/code-fusheng:latest
+kubectl get pod -n prod -o wide
+kubectl logs -f code-fusheng-prod-594d488ddc-qmjl4 -n prod
