@@ -24,13 +24,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = BusinessException.class)
     public BaseResult<Object> businessExceptionHandler(BusinessException e) {
-        logger.error("业务异常 => 异常信息:{}", e.getMessage(), e);
+        //logger.error("全局统一异常处理-业务异常 => 异常信息:{}", e.getMessage(), e);
         return BaseResult.error(ResultEnum.BUSINESS_ERROR.getCode(), ResultEnum.BUSINESS_ERROR.getMsg() + ":" + e.getMessage());
     }
 
     @ExceptionHandler(value = Exception.class)
     public BaseResult<Object> exceptionHandler(Exception e) {
-        logger.error("系统异常 => 异常信息:{}", e.getMessage(), e);
+        //logger.error("全局统一异常处理-系统异常 => 异常信息:{}", e.getMessage(), e);
         return BaseResult.error(ResultEnum.SYSTEM_ERROR.getCode(), ResultEnum.SYSTEM_ERROR.getMsg() + ":" + e.getMessage());
     }
 

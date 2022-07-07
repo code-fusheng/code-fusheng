@@ -12,7 +12,7 @@ import lombok.Data;
  */
 
 @Data
-public class CompanyExcel {
+public class CompanyReadExcel {
 
     @ExcelProperty(index = 0)
     private String companyName;

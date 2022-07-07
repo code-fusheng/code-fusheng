@@ -118,7 +118,7 @@ public class MetricsAspect {
         }
         // 实现了返回值的日志输出
         if (metrics.logReturn()) {
-            logger.info("[出参日志] => 调用 {} 的返回结果:{}", name, returnValue);
+            logger.info("[出参日志] => 调用 {} 的返回结果:{}", name, objectMapper.writeValueAsString(returnValue));
         }
         return returnValue;
     }

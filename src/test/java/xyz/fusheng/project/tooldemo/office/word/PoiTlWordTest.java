@@ -1,4 +1,4 @@
-package xyz.fusheng.project.tooldemo.office;
+package xyz.fusheng.project.tooldemo.office.word;
 
 import com.deepoove.poi.XWPFTemplate;
 import com.deepoove.poi.data.ChartSingleSeriesRenderData;

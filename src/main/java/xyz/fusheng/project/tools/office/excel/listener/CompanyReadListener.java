@@ -1,8 +1,8 @@
 package xyz.fusheng.project.tools.office.excel.listener;
 
+import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.read.listener.ReadListener;
-import com.alibaba.excel.util.ListUtils;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -20,9 +20,12 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.fusheng.project.tools.elasticsearch.document.CompanyDocument;
-import xyz.fusheng.project.tools.office.excel.model.CompanyExcel;
+import xyz.fusheng.project.tools.office.excel.model.CompanyReadExcel;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -35,12 +38,14 @@ import java.util.stream.Collectors;
  * @Description:
  */
 
-public class CompanyReadListener implements ReadListener<CompanyExcel> {
+public class CompanyReadListener implements ReadListener<CompanyReadExcel> {
 
     private static final Logger logger = LoggerFactory.getLogger(CompanyReadListener.class);
 
     public static final ThreadLocal<AtomicInteger> count = ThreadLocal.withInitial(() ->
             new AtomicInteger(0));
+
+    public static final ThreadLocal<List<CompanyReadExcel>> noMatchCompanyList = ThreadLocal.withInitial(ArrayList::new);
 
     private String COMPANY_INDEX;
 
@@ -56,7 +61,7 @@ public class CompanyReadListener implements ReadListener<CompanyExcel> {
 
     @SneakyThrows
     @Override
-    public void invoke(CompanyExcel data, AnalysisContext context) {
+    public void invoke(CompanyReadExcel data, AnalysisContext context) {
         try {
             logger.info("[解析Excel数据-第「{}」条]  => CompanyExcel:{}", count.get().incrementAndGet(), JSON.toJSONString(data));
             SearchRequest searchRequest = new SearchRequest().indices(COMPANY_INDEX).types("_doc");
@@ -80,6 +85,7 @@ public class CompanyReadListener implements ReadListener<CompanyExcel> {
                 }
             } else {
                 logger.info("[解析Excel数据-未能匹配到「{}」企业名称]", data.getCompanyName());
+                noMatchCompanyList.get().add(data);
             }
         } catch (Exception e) {
             logger.error("[异常:{}]", e.getMessage(), e);
@@ -89,5 +95,7 @@ public class CompanyReadListener implements ReadListener<CompanyExcel> {
     @Override
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
         logger.info("[解析Excel数据-完成所有]");
+        File file = new File(Paths.get("未匹配企业-" + new Date().getTime() + ".xlsx").toString());
+        EasyExcel.write(file.getPath(), CompanyReadExcel.class).sheet("test").doWrite(noMatchCompanyList.get());
     }
 }

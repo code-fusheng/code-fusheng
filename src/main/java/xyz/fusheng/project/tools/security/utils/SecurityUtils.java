@@ -3,6 +3,8 @@ package xyz.fusheng.project.tools.security.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
+import xyz.fusheng.project.common.enums.ResultEnum;
+import xyz.fusheng.project.common.exception.BusinessException;
 import xyz.fusheng.project.tools.security.entity.CustomUser;
 
 /**
@@ -21,8 +23,12 @@ public class SecurityUtils {
     }
 
     public static CustomUser getUserInfo() {
-        CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return customUser;
+        try {
+            CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            return customUser;
+        } catch (Exception e) {
+            throw new BusinessException(ResultEnum.AUTH_FAILED);
+        }
     }
 
 }

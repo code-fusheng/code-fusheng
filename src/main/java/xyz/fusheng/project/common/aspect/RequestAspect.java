@@ -29,8 +29,8 @@ import org.springframework.stereotype.Component;
  * Advice 增强
  */
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class RequestAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(RequestAspect.class);

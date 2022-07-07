@@ -148,6 +148,13 @@ public class CollectionTest {
         System.out.println(stopWatch.prettyPrint());
     }
 
+    private static void testCollectionAddAll() {
+        List<String> baseList = new ArrayList<>();
+        List<String> oneList = new ArrayList<>();
+        List<String> towList = new ArrayList<>();
+
+    }
+
     public static void main(String[] args) {
         //arraysConvertList();
         //listSubListOOM();

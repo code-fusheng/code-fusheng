@@ -1,4 +1,4 @@
-package xyz.fusheng.project.tooldemo.office;
+package xyz.fusheng.project.tooldemo.office.word;
 
 import org.apache.poi.xwpf.usermodel.Borders;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
